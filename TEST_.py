@@ -1,82 +1,43 @@
 
 
-
-# favorite_fruits = []
-# not_favorite_fruits = []
-#
-# while True:
-#     fruits = input('Название фрукта: ')
-#     if fruits == 'Яблоко' or 'яблоко' or ' груша' \
-#             or 'Груша' or 'Персик':
-#         print('Вы угадали! Это я люблю ')
-#         favorite_fruits.append(fruits)
-#         print(f'Список любимых фруктов: \n{favorite_fruits}')
-#     else:
-#         print('Нет, спасибо - это не вкусно!')
-#         not_favorite_fruits.append(fruits)
-#
-# _________________________________________________________________
-# favorite_fruits = []
-# not_favorite_fruits = []
-#
-# while True:
-#     fruits = input('Название фрукта: ').lower()  # Приводим ввод к нижнему регистру
-#
-#     if fruits in ['яблоко', 'груша', 'персик']:
-#         print('Вы угадали! Это я люблю ')
-#         favorite_fruits.append(fruits)
-#         print(f'Список любимых фруктов: \n{favorite_fruits}')
-#     else:
-#         print('Нет, спасибо - это не вкусно!')
-#         not_favorite_fruits.append(fruits)
-#         print(f'Список  не любимых фруктов: \n{not_favorite_fruits}')
-#
-#     continue_game = input("Хотите ввести ещё один фрукт? (y/n)")
-#     if continue_game != 'y':
-#         break  # Выходим из цикла, если пользователь не хочет продолжать
-#
-# print(f"Мои нелюбимые фрукты: {not_favorite_fruits}")
-
-
-# __________________________________________________________________
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(f'{i} * {j} = {i*j}')
 
 
 
-# favorite_fruits = []
-# unfavorite_fruits = []
-#
-# # Бесконечный цикл while, который завершится только когда пользователь введет "Стоп"
-# while True:
-#     # Запрашиваем у пользователя ввод названия фрукта
-#     fruit_name = input("Введите название фрукта или 'Стоп' для выхода: ")
-#
-#     # Если введенный текст совпадает со словом "Стоп", завершаем цикл
-#     if fruit_name == "Стоп":
-#         break
-#
-#     # Проверяем, является ли введенный фрукт любимым
-#     if fruit_name == "Яблоко" or fruit_name == "Груша":
-#         favorite_fruits.append(fruit_name)
-#         print("Спасибо! Вы угадали.")
-#     else:
-#         unfavorite_fruits.append(fruit_name)
-#         print("Этот фрукт мне не нравится.")
-#
-# # Выводим результаты
-# print(f"Любимые фрукты: {favorite_fruits}")
-# print(f"Нелюбимые фрукты: {unfavorite_fruits}")
 
-# ___________________________________________________
+Primes: [2, 3, 5, 7, 11, 13]
+Not Primes: [4, 6, 8, 9, 10, 12, 14, 15]
 
-my_list = [42, 69, 322, 13, 0, 99, -5, 9, 8, 7, -6, 5]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-num = 0
+primes = []  # Список для хранения простых чисел
+not_primes = []  # Список для хранения составных чисел
 
-while num <= len(my_list):
-    if my_list[num] > 0:
-        print(my_list[num])
-    num += 1
-    if my_list[num] == 0:
-        continue
-    if my_list[num] < 0:
-        break
+for index in range(1, len(numbers)):  # Начинаем цикл с индекса 1, чтобы пропустить первое число (1)
+    is_prime  = True  # Устанавливаем флаг, что число может быть простым
+    for j in range(2, index):  # Перебираем возможные делители числа от 2 до индекса числа минус 1
+        if numbers[index] % j == 0:  # Проверяем, делится ли число на j без остатка
+            is_prime = False  # Если делится, значит число составное
+            break  # Прерываем внутренний цикл, так как число уже не может быть простым
+    if is_prime:  # Если число простое, добавляем его в список простых чисел
+        primes.append(numbers[index])
+    else:  # Если число составное, добавляем его в список составных чисел
+        not_primes.append(numbers[index])
+
+print(primes)  # Выводим список простых чисел
+print(not_primes)  # Выводим список составных чисел
+
+
+
+
+def is_prime(n):  # Функция для проверки, является ли число n простым
+    if n <= 1:  # Проверяем, больше ли число 1, так как меньшие числа не могут быть простыми
+        return False
+    for i in range(2, n):  # Перебираем числа от 2 до n-1, так как все простые числа, кроме 2, имеют в качестве делителя только 1 и само себя
+        if n % i == 0:  # Проверяем, делится ли n на i без остатка
+            return False  # Если делится, то n не является простым числом
+    return True  # Если дошли до конца цикла без возврата False, то n - простое число
+
+print(is_prime(2))  # Выводим результат функции is_prime для числа 2. Так как 2 - простое число, функция вернет True
